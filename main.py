@@ -12,7 +12,7 @@ lista_culturas = []
 while True:
     print('\n--- FarmTech Solutions ---')
     print('1. Inserir Novo Plantio')
-    print('2. Listar Dados')
+    print('2. Relátorio de Áreas Cadastradas')
     print('0. Sair')
 
     #Pede pro usuário escolher a cultura
@@ -40,8 +40,15 @@ while True:
 
         # Mostra o resultado
         print(f'Cultura {cultura} cadastrada com area {area_triangulo:.2f} m².')
-
         pass
+    elif opcao == '2':
+        print('\n--- Relátorio de Áreas Cadastradas ---')
+        # O range(len(...)) cria uma lista de números (0, 1, 2...) do tamanho da lista
+        for i in range(len(lista_culturas)):
+            cultura = lista_culturas[i]
+            area_triangulo = lista_areas[i]
+            print(f'{i + 1}. Cultura: {cultura} | Área: {area_triangulo} m²')
+            print(f'Total da Fazenda: {sum(lista_areas):.2f} m² ')
     elif opcao == '0':
         print('Saindo do sistema')
         break

@@ -19,17 +19,19 @@ while True:
     print('\n--- FarmTech Solutions ---')
     print('1. Inserir Novo Plantio')
     print('2. Relátorio de Áreas Cadastradas')
+    print('3. Excluir Plantio')
     print('0. Sair')
 
     #Pede pro usuário escolher a cultura
     opcao = input('Escolha uma opção: ')
     if opcao == '1':
         print('\n--- Cadastro de Novo Plantio ---')
-        print('Qual a cultura? (1. Café | 2. Soja')
+        print('Qual a cultura? (1. Café | 2. Soja)')
         escolha = input('Escolha o número: ')
         if escolha == '1':
             cultura = 'Café'
             produto = 'Fosfato'
+            unidade = 'Litros'
 
             # Pede pro usuário inserir alguns dados
             base = float(input('Digite a base: '))
@@ -52,6 +54,7 @@ while True:
         elif escolha == '2':
             cultura = 'Soja'
             produto = 'Zinco'
+            unidade = 'Kilos'
 
             # Pede pro usuário inserir alguns dados
             base = float(input('Digite a base: '))
@@ -89,8 +92,23 @@ while True:
 
             # Imprimindo de forma genérica para funcionar com qualquer cultura
             print(f'{i + 1}. Cultura: {cultura} | Área: {area_triangulo:.2f} m²')
-            print(f'   Insumo necessário: {qtd_insumos:.2f} de {insumos}')
+            print(f'   Insumo necessário: {qtd_insumos:.2f} {unidade} de {insumos}')
         print(f'Total da Fazenda: {sum(lista_areas):.2f} m² ')
+
+    # Excluir Informações
+    elif opcao == '3':
+        print('\n--- Excluindo Plantio ---')
+        numero_deletar = int(input('Qual o plantio que você deseja deletar?: '))
+        indice_deletar = numero_deletar - 1
+
+        lista_areas.pop(indice_deletar)
+        lista_culturas.pop(indice_deletar)
+        lista_insumos.pop(indice_deletar)
+        lista_qtd_insumos.pop(indice_deletar)
+
+        print('Plantio Deletado com Sucesso!')
+
+        pass
 
     elif opcao == '0':
         print('Saindo do sistema')

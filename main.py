@@ -20,6 +20,7 @@ while True:
     print('1. Inserir Novo Plantio')
     print('2. Relátorio de Áreas Cadastradas')
     print('3. Excluir Plantio')
+    print('4. Editar Plantio')
     print('0. Sair')
 
     #Pede pro usuário escolher a cultura
@@ -109,6 +110,38 @@ while True:
         print('Plantio Deletado com Sucesso!')
 
         pass
+
+    # Alterar Informações
+    elif opcao == '4':
+        print('\n--- Alterando Plantio ---')
+        numero_editar = int(input('Qual o plantio que deseja alterar?: '))
+        indice_editar = numero_editar - 1
+
+        # Pede pro usuário inserir os novos dados
+        nova_base = float(input('Digite a nova base: '))
+        nova_altura = float(input('Digite a nova altura: '))
+
+        # Recalcula a área
+        nova_area = calcular_area_triangulo(nova_base, nova_altura)
+
+        # 1. ATUALIZA A ÁREA NA LISTA (Substituição direta, sem pop ou append)
+        lista_areas[indice_editar] = nova_area
+
+        # 2. DESCOBRE QUAL É A CULTURA PARA RECALCULAR O INSUMO
+        cultura_atual = lista_culturas[indice_editar]
+
+        # 3. RECALCULA BASEADO NA CULTURA CORRETA
+        if cultura_atual == 'Café':
+            novo_produto_necessario = nova_area * fostato_metro
+        elif cultura_atual == 'Soja':
+            novo_produto_necessario = (nova_area / hectare) * zinco_hectare
+
+        # 4. ATUALIZA A QUANTIDADE DE INSUMO NA LISTA
+        lista_qtd_insumos[indice_editar] = novo_produto_necessario
+
+        print('Área e insumos atualizados com sucesso!')
+        pass
+
 
     elif opcao == '0':
         print('Saindo do sistema')
